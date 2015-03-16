@@ -49,7 +49,7 @@ function(config) {
             var fx = this.game.add.audio('sfx');
             t.events.onInputUp.add(function() {
                 bgm.stop();
-                //fx.play('', 0,1);
+                fx.play('', 0,1);
                 this.game.state.start('game');
             }, this);
             
