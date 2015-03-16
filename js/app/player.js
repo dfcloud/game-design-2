@@ -46,6 +46,7 @@ function(config, action) {
         this.player = player;
     }
 
+
     Player.prototype.registerAnimations = function()
     {
         this.player.animations.add('rest-right',
@@ -62,6 +63,7 @@ function(config, action) {
             config.animations.player.jumpLeft, 2, true);
         this.player.play('rest-right');
     }
+
 
     Player.prototype.registerBullets = function()
     {

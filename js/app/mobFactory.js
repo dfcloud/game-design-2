@@ -11,6 +11,7 @@ function(config, Mob) {
         {
             MobFactory.mobs.push(new Mob(game, 100, true,
                 config.game.level[game.currentLevel].bossHitPoints));
+
         },
         build: function(game, mobs)
         {

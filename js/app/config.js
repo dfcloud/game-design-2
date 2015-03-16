@@ -7,6 +7,7 @@ define(function() {
             width: 1280,
             height: 720,
 
+
             level: [ 
                 {
                     spawnpoints: [2500, 2000],
@@ -41,8 +42,8 @@ define(function() {
                     ]
                 }
             ] 
-        },
 
+        },
         movement: {
             speed: 9 
         },
@@ -59,12 +60,12 @@ define(function() {
             },
 
             mob: {
-                restRight: [0],
-                restLeft: [6],
-                runRight: [0,1,2,1,0],
-                runLeft: [6,5,4,5,6],
-                jumpRight: [1],
-                jumpLeft: [5]
+                restRight: [0,6,8,9],
+                restLeft: [1],
+                runRight: [0,6,8,9],
+                runLeft: [10, 11, 12, 13, 14, 15],
+                jumpRight: [30, 31],
+                jumpLeft: [32, 33]
             }
         },
         platform: {

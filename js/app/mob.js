@@ -3,10 +3,8 @@ function(config) {
 
     "use strict";
 
-    var Mob = function(game, spawnpoint, isBoss, hitpoints)
+    var Mob = function(game, spawnpoint)
     {
-        this.isBoss = isBoss;
-        this.hitpoints = hitpoints;
         this.game = game;
         this.registerSprite(game, spawnpoint);
         this.registerAnimations();
@@ -19,8 +17,8 @@ function(config) {
         var mob = game.add.sprite(spawnpoint, 0, 'mob');
         game.physics.arcade.enable(mob);
         mob.frame = 11;
-        mob.width = 200;
-        mob.height = 200;
+        mob.width = 225;
+        mob.height = 225;
         mob.body.bounce.y = 0;
         mob.body.gravity.y = 1000;
         mob.body.collideWorldBounds = true;
@@ -28,8 +26,8 @@ function(config) {
         mob.healthGraphic.beginFill(0xff0000)
         mob.healthGraphic.drawRect(0, 10, 40, 7);
 
-        mob.totalHitPoints = this.hitpoints;
-        mob.currentHitPoints = this.hitpoints;
+        mob.totalHitPoints = 100;
+        mob.currentHitPoints = 100;
 
         this.mob = mob;
     }
@@ -37,7 +35,7 @@ function(config) {
     Mob.prototype.hurt = function(amount)
     {
         var healthBarWidth = 40;
-        this.mob.healthGraphic.width -= amount * (1/this.mob.totalHitPoints);
+        this.mob.healthGraphic.width -= amount * .01;
         this.mob.currentHitPoints -= amount;
         if (this.mob.currentHitPoints < 1) {
             this.mob.kill();
