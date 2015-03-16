@@ -20,6 +20,7 @@ function(config, environment, HUD, player, action, mobFactory, controls, platfor
             this.game.load.image('ground', 'assets/images/ground-temp.jpg');
             this.game.load.image('nuke_bg', 'assets/images/nuke.jpg');
             this.game.load.audio('impact', 'assets/audio/SoundEffects/bullet-hit.wav');
+            this.game.load.audio('sfx', 'assets/audio/SoundEffects/LikeABoss.mp3');        
             this.game.load.audio('bomb', 'assets/audio/SoundEffects/bomb.wav');
             this.game.load.image('background1', 'assets/images/bgtest.jpg');
             this.game.load.image('background2', 'assets/images/bgtest2.jpg');
@@ -39,6 +40,8 @@ function(config, environment, HUD, player, action, mobFactory, controls, platfor
 
         },
         create: function() {
+            var fx = this.game.add.audio('sfx');
+            fx.play('', 0,1);
             mobFactory.canspawn = true;
             environment.build(this.game);
             player.build(this.game);
