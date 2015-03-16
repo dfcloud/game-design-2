@@ -297,6 +297,7 @@ function(config, environment, player, platform, action) {
     HUD.prototype.hurt = function(damage)
     {
         totaldamage = totaldamage + damage;
+        var dskip;
         if (totaldamage > 1000)
         {
             this.player.alive = false;
@@ -305,34 +306,56 @@ function(config, environment, player, platform, action) {
             totalenergy = 100;
             this.game.state.start('game-over');
         }
-        else if (totaldamage > 700)
+        else if (totaldamage > 300 && this.player.level == 1)
         {
-            if (this.player.level != 3) {
-                this.player.level = 3;
-                console.log('change to plane');
-            };
+
+                if (this.player.level == 1) {
+
+                    this.player.level = 2;
+                    this.power = 20;
+                    this.defense = 20;
+                    this.handicap = 20;
+
+
+                    var temp = {restRight: [14,15,16,17],
+                    restLeft: [13,15,16,17],
+                    runRight: [14,15,16,17],
+                    runLeft: [13,15,16,17],
+                    jumpRight: [14,15,16,17],
+                    jumpLeft: [13,15,16,17]};
+
+
+                    config.animations.player = temp;
+                    this.player.registerAnimations();
+                    console.log(config.animations.player);
+                    setTimeout(changetolevel2.bind(null, this.player), 800);
+
+            }
 
         }
-        else if (totaldamage > 300)
+        else if (totaldamage > 700 && this.player.level == 2)
         {
-            if (this.player.level != 2) {
+            if (this.player.level == 2) {
 
-                this.player.level = 2;
+                this.player.level = 3;
+                this.power = 40;
+                this.defense = 40;
+                this.handicap = 40;
 
+              var temp = {restRight: [22,23,24],
+                                restLeft: [22,23,24],
+                                runRight: [22,23,24],
+                                runLeft: [22,23,24],
+                                jumpRight: [22,23,24],
+                                jumpLeft: [22,23,24]};
 
-                var temp = {restRight: [14,15,16,17],
-                restLeft: [13,15,16,17],
-                runRight: [14,15,16,17],
-                runLeft: [13,15,16,17],
-                jumpRight: [14,15,16,17],
-                jumpLeft: [13,15,16,17]};
+                    config.animations.player = temp;
+                    player.registerAnimations();
 
+                setTimeout(function(){
+                   player.player.loadTexture('player3');
+                }, 600);
 
-                config.animations.player = temp;
-                this.player.registerAnimations();
-                console.log(config.animations.player);
-
-                setInterval(changetolevel2.bind(null, this.player), 1000);
 
             };
 
@@ -340,7 +363,7 @@ function(config, environment, player, platform, action) {
 
         this.game.add.tween(healthbar).to({x: (-1800 - totaldamage)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);
         this.game.add.tween(healthbar2).to({x: 437 - (totaldamage*.4)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);
-        this.game.add.tween(healthbar).to({x: (-1800 - totaldamage)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);                
+
     }
     return new HUD();
 

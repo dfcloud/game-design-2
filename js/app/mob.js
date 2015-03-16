@@ -14,11 +14,11 @@ function(config) {
 
     Mob.prototype.registerSprite = function(game, spawnpoint)
     {
-        var mob = game.add.sprite(spawnpoint, 0, 'mob');
+        var mob = game.add.sprite(spawnpoint, 0, 'soldier1');
         game.physics.arcade.enable(mob);
         mob.frame = 11;
-        mob.width = 180;
-        mob.height = 186;
+        mob.width = 150;
+        mob.height = 150;
         mob.body.bounce.y = 0;
         mob.body.gravity.y = 1000;
         mob.body.collideWorldBounds = true;
