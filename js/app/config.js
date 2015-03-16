@@ -6,7 +6,6 @@ define(function() {
         game: {
             width: 1280,
             height: 720,
-
             level: [ 
                 {
                     spawnpoints: [2500, 2000],
@@ -27,12 +26,28 @@ define(function() {
                 {
                     spawnpoints: [2500, 2000],
                     bossSpawnpoint: 1500,
-                    bossHitPoints: 1000,
+                    bossHitPoints: 2500,
                     mobCount: 7,
-                    mobHitPoints: 200,
+                    mobHitPoints: 250,
                     background: "background2",
                     ground: "ground2",
                     floor: "floor2",
+                    platforms: [
+                        { x: 0, y: 0 },
+                        { x: -800, y: -100 },
+                        { x: -1700, y: 50 },
+                        { x: -2000, y: 50 },
+                    ]
+                },
+                 {
+                    spawnpoints: [2500, 2000],
+                    bossSpawnpoint: 1500,
+                    bossHitPoints: 5000,
+                    mobCount: 7,
+                    mobHitPoints: 500,
+                    background: "background3",
+                    ground: "ground3",
+                    floor: "floor3",
                     platforms: [
                         { x: 0, y: 0 },
                         { x: -800, y: -100 },

@@ -13,6 +13,24 @@ function(config, environment, player, platform, action) {
     var timer1, timer2, timer3;
     var singlePress1 = true, singlePress2 = true, singlePress3 = true;
 
+    function changetolevel2(player){
+
+        var temp = {restRight: [0],
+                    restLeft: [13],
+                    runRight: [0,1,2,3],
+                    runLeft: [10,11,12,13],
+                    jumpRight: [0,1,2,3],
+                    jumpLeft: [10,11,12,13]};
+
+        config.animations.player = temp;
+        player.registerAnimations();
+        player.player.loadTexture('player2');
+        player.player.height = 200;
+        player.player.width = 200;
+
+
+    }
+
     var HUD = function() {
         this.k1 = false;
         this.k2 = false;
@@ -22,6 +40,8 @@ function(config, environment, player, platform, action) {
         this.defense = 0;
         this.handicap = 0;
     }
+
+
     HUD.prototype.build = function(game, player)
     {
         totalenergy = 100;
@@ -222,6 +242,7 @@ function(config, environment, player, platform, action) {
         totalenergy = totalenergy - amount;
         if (totalenergy <= 0)
             totalenergy = 0;
+
     }
 
     function updateCounter() {
@@ -276,6 +297,7 @@ function(config, environment, player, platform, action) {
     HUD.prototype.hurt = function(damage)
     {
         totaldamage = totaldamage + damage;
+        var dskip;
         if (totaldamage > 1000)
         {
             this.player.alive = false;
@@ -284,25 +306,68 @@ function(config, environment, player, platform, action) {
             totalenergy = 100;
             this.game.state.start('game-over');
         }
-        else if (totaldamage > 700)
+        else if (totaldamage > 300 && this.player.level == 1)
         {
-            this.player.level = 3;
-            this.defense = 40;
-            this.power = 40;
-            this.handicap = 40;
+
+                if (this.player.level == 1) {
+
+                    this.player.level = 2;
+                    this.power = 20;
+                    this.defense = 20;
+                    this.handicap = 20;
+
+
+                    var temp = {restRight: [14,15,16,17],
+                    restLeft: [13,15,16,17],
+                    runRight: [14,15,16,17],
+                    runLeft: [13,15,16,17],
+                    jumpRight: [14,15,16,17],
+                    jumpLeft: [13,15,16,17]};
+
+
+                    config.animations.player = temp;
+                    this.player.registerAnimations();
+                    console.log(config.animations.player);
+                    setTimeout(changetolevel2.bind(null, this.player), 800);
+
+            }
+
         }
-        else if (totaldamage > 300)
+        else if (totaldamage > 700 && this.player.level == 2)
         {
-            this.player.level = 2;
-            this.power = 20;
-            this.defense = 20;
-            this.handicap = 20;
+            if (this.player.level == 2) {
+
+                this.player.level = 3;
+                this.power = 40;
+                this.defense = 40;
+                this.handicap = 40;
+
+              var temp = {restRight: [22,23,24],
+                                restLeft: [22,23,24],
+                                runRight: [22,23,24],
+                                runLeft: [22,23,24],
+                                jumpRight: [22,23,24],
+                                jumpLeft: [22,23,24]};
+
+                    config.animations.player = temp;
+                    player.registerAnimations();
+
+                setTimeout(function(){
+                   player.player.loadTexture('player3');
+                }, 600);
+
+
+            };
+
         }
 
         this.game.add.tween(healthbar).to({x: (-1800 - totaldamage)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);
         this.game.add.tween(healthbar2).to({x: 437 - (totaldamage*.4)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);
-        this.game.add.tween(healthbar).to({x: (-1800 - totaldamage)}, 50, Phaser.Easing.Bounce.Out, true, 0, 0, false);                
+
     }
     return new HUD();
 
 });
+
+
+

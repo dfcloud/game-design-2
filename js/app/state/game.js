@@ -34,8 +34,15 @@ function(config, environment, HUD, player, action, mobFactory, controls, platfor
             this.game.load.image('health', 'assets/images/gradient.png');
             this.game.load.image('minihealth', 'assets/images/minihealthbar.png');
             this.game.load.spritesheet('player', 'assets/images/player-sprite-wire.png', 400, 400);
+            this.game.load.spritesheet('player2', 'assets/images/SlugTank_SpritSheet.png', 400, 400);
+            this.game.load.spritesheet('player3', 'assets/images/KillBot_SpriteSheet.png', 400, 400);
             this.game.load.image('bullet', 'assets/images/bullet-temp.png');
-	    this.game.load.spritesheet('mob', 'assets/images/Soldier3_SpriteSheet.png', 100, 100);
+            this.game.load.spritesheet('captainAmerica', 'assets/images/player-badguyca.png', 100, 100);
+            this.game.load.spritesheet('megaMan', 'assets/images/player-badguymm.png', 100, 100);
+            this.game.load.spritesheet('superMan', 'assets/images/player-badguysm.png', 100, 100);
+            this.game.load.spritesheet('soldier1', 'assets/images/Soldier1_SpriteSheet.png', 100, 100);
+            this.game.load.spritesheet('soldier2', 'assets/images/Soldier2_SpriteSheet.png', 100, 100);
+            this.game.load.spritesheet('soldier3', 'assets/images/Soldier3_SpriteSheet.png', 100, 100);
 
         },
         create: function() {
