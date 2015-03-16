@@ -6,11 +6,6 @@ define(function() {
         game: {
             width: 1280,
             height: 720,
-
-<<<<<<< HEAD
-
-=======
->>>>>>> all heros
             level: [ 
                 {
                     spawnpoints: [2500, 2000],
