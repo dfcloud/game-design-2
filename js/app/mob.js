@@ -17,8 +17,8 @@ function(config) {
         var mob = game.add.sprite(spawnpoint, 0, 'mob');
         game.physics.arcade.enable(mob);
         mob.frame = 11;
-        mob.width = 225;
-        mob.height = 225;
+        mob.width = 180;
+        mob.height = 186;
         mob.body.bounce.y = 0;
         mob.body.gravity.y = 1000;
         mob.body.collideWorldBounds = true;
