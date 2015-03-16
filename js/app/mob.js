@@ -3,16 +3,18 @@ function(config) {
 
     "use strict";
 
-    var Mob = function(game, spawnpoint)
+    var Mob = function(game, spawnpoint, isBoss, hitpoints)
     {
+        this.isBoss = typeof isBoss != 'undefined' ? isBoss : false;
+        var hitpoints = typeof hitpoints != 'undefined' ? hitpoints : 100;
         this.game = game;
-        this.registerSprite(game, spawnpoint);
+        this.registerSprite(game, spawnpoint, hitpoints);
         this.registerAnimations();
         this.registerBullets();
         this.facing = "right"
     }
 
-    Mob.prototype.registerSprite = function(game, spawnpoint)
+    Mob.prototype.registerSprite = function(game, spawnpoint, hitpoints)
     {
         var mob = game.add.sprite(spawnpoint, 0, 'soldier1');
         game.physics.arcade.enable(mob);
@@ -26,8 +28,8 @@ function(config) {
         mob.healthGraphic.beginFill(0xff0000)
         mob.healthGraphic.drawRect(0, 10, 40, 7);
 
-        mob.totalHitPoints = 100;
-        mob.currentHitPoints = 100;
+        mob.totalHitPoints = hitpoints;
+        mob.currentHitPoints = hitpoints;
 
         this.mob = mob;
     }
@@ -35,7 +37,7 @@ function(config) {
     Mob.prototype.hurt = function(amount)
     {
         var healthBarWidth = 40;
-        this.mob.healthGraphic.width -= amount * .01;
+        this.mob.healthGraphic.width -= amount * (1/this.mob.totalHitPoints);
         this.mob.currentHitPoints -= amount;
         if (this.mob.currentHitPoints < 1) {
             this.mob.kill();
@@ -65,10 +67,14 @@ function(config) {
         this.fireRate = 100;
         this.nextFire = 0;
 
+        var bulletcount = 2;
+        if (this.isBoss)
+            bulletcount = 5;
+
         var bullets = this.game.add.group();
         bullets.enableBody = true;
         bullets.physicsBodyType = Phaser.Physics.ARCADE;
-        bullets.createMultiple(1, 'bullet');
+        bullets.createMultiple(bulletcount, 'bullet');
         bullets.setAll('checkWorldBounds', true);
         bullets.setAll('outOfBoundsKill', true);
 
