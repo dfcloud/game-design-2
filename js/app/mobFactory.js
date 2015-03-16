@@ -9,11 +9,10 @@ function(config, Mob) {
         canspawn: true,
         buildBoss: function(game)
         {
-
             switch(game.currentLevel){
                 case 0:
                     var tempMob =  new Mob(game, 100, true,
-                    config.game.level[game.currentLevel].bossHitPoints);
+                        config.game.level[game.currentLevel].bossHitPoints);
                     tempMob.mob.width = 150;
                     tempMob.mob.height = 150;
                     tempMob.mob.loadTexture('megaMan');
@@ -21,7 +20,7 @@ function(config, Mob) {
                     break;
                 case 1:
                     var tempMob =  new Mob(game, 100, true,
-                    config.game.level[game.currentLevel].bossHitPoints);
+                        config.game.level[game.currentLevel].bossHitPoints);
                     tempMob.mob.width = 195;
                     tempMob.mob.height = 195;
                     tempMob.mob.loadTexture('captainAmerica');
