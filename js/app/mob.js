@@ -64,12 +64,13 @@ function(config) {
 
     Mob.prototype.registerBullets = function()
     {
-        this.fireRate = 100;
+        this.fireRate = 65;
         this.nextFire = 0;
 
         var bulletcount = 2;
         if (this.isBoss)
-            bulletcount = 5;
+            bulletcount = 4;
+
 
         var bullets = this.game.add.group();
         bullets.enableBody = true;

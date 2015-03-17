@@ -10,9 +10,9 @@ define(function() {
                 {
                     spawnpoints: [2500, 2000],
                     bossSpawnpoint: 1500,
-                    bossHitPoints: 5000,
+                    bossHitPoints: 1500,
                     mobCount: 5,
-                    mobHitPoints: 250,
+                    mobHitPoints: 150,
                     background: "background1",
                     ground: "ground1",
                     floor: "floor1",

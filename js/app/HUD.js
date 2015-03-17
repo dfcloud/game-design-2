@@ -44,6 +44,41 @@ function(config, environment, player, platform, action) {
 
     HUD.prototype.build = function(game, player)
     {
+         switch(player.level){
+            case 2:
+            player.level = 2;
+
+                    var temp = {restRight: [0],
+                    restLeft: [13],
+                    runRight: [0,1,2,3],
+                    runLeft: [10,11,12,13],
+                    jumpRight: [0,1,2,3],
+                    jumpLeft: [10,11,12,13]};
+
+            config.animations.player = temp;
+            player.registerAnimations();
+                    player.player.height = 200;
+        player.player.width = 200;
+            player.player.loadTexture('player2');
+            break;
+            case 3:
+            player.level = 3;
+
+            var temp = {restRight: [5,6,7],
+                restLeft: [0,1,2],
+                runRight: [5,6,7],
+                runLeft: [0,1,2],
+                jumpRight: [5,6,7],
+                jumpLeft: [0,1,2]};
+
+            config.animations.player = temp;
+            player.registerAnimations();
+                    player.player.height = 200;
+        player.player.width = 200;
+            player.player.loadTexture('player3');
+            break;
+        }
+
         totalenergy = 100;
         totaldamage = 0;
         this.game = game;
@@ -306,7 +341,7 @@ function(config, environment, player, platform, action) {
             totalenergy = 100;
             this.game.state.start('game-over');
         }
-        else if (totaldamage > 300 && this.player.level == 1)
+        else if (totaldamage > 500 && this.player.level == 1)
         {
 
                 if (this.player.level == 1) {
@@ -333,7 +368,7 @@ function(config, environment, player, platform, action) {
             }
 
         }
-        else if (totaldamage > 700 && this.player.level == 2)
+        else if (totaldamage > 800 && this.player.level == 2)
         {
             if (this.player.level == 2) {
 
@@ -353,7 +388,17 @@ function(config, environment, player, platform, action) {
                     player.registerAnimations();
 
                 setTimeout(function(){
-                   player.player.loadTexture('player3');
+
+                  var temp = {restRight: [5,6,7],
+                restLeft: [0,1,2],
+                runRight: [5,6,7],
+                runLeft: [0,1,2],
+                jumpRight: [5,6,7],
+                jumpLeft: [0,1,2]};
+
+            config.animations.player = temp;
+            player.registerAnimations();
+            player.player.loadTexture('player3');
                 }, 600);
 
 
